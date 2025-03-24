@@ -32,6 +32,7 @@ def Hangman():
         wordDisplay = CheckAnswer(answer, randomWord, wordDisplay)
         os.system('cls')
         print(wordDisplay)
+    print("You Win!")
 
 def PlayerWon(wordDisplay):
     for char in wordDisplay:
