@@ -11,7 +11,7 @@ lives = 5
 @GameRunner
 def Hangman():
     wordList = InitializeWordList(WORDLIST_SOURCE)
-    randomWord = GetRandomWord(wordList)
+    randomWord = GetRandomWord(wordList, 6)
     wordDisplay = ""
     global lives 
     lives = 5
@@ -63,8 +63,13 @@ def CheckAnswer(playerGuess, wordToGuess, wordDisplay):
         RemoveLife()
     return newWordDisplay
 
-def GetRandomWord(wordList):
+def GetRandomWord(wordList, minLength):
     randomWord = random.randint(0, len(wordList) - 1)
+
+    #repeat until word of minimum length is found
+    while len(wordList[randomWord]) < minLength:
+        randomWord = random.randint(0, len(wordList) - 1)
+
     return wordList[randomWord].decode('utf-8')
     
 def InitializeWordList(site):
